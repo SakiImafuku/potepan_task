@@ -4,9 +4,11 @@ inherit_from:
 #以下にはrubocopで検証したくないフォルダを指定する
 AllCops:
   Exclude:
+    - 'vendor/**/*'
     - 'db/**/*'
     - 'bin/*'
     - 'config/environments/*'
     - 'config/application.rb'
     - 'config/initializers/*'
     - 'config/spring.rb'
+    - 'config/routes.rb'   
