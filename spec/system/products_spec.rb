@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe '商品', type: :system do
   describe '商品詳細ページ' do
-    let!(:product) { FactoryBot.create(:product, name: 'EXAMPLE TOTE')}
+    let!(:product) { FactoryBot.create(:product, name: 'EXAMPLE TOTE') }
+
     before do
       visit potepan_product_path(product.id)
     end
@@ -19,10 +20,6 @@ describe '商品', type: :system do
     end
 
     context 'トップページに移動する' do
-      before do
-        visit potepan_product_path(product.id)
-      end
-
       it 'ロゴをクリックする' do
         click_on 'ロゴ画像'
         expect(page).to have_title 'BIGBAG Store'
@@ -42,6 +39,5 @@ describe '商品', type: :system do
         expect(page).to have_title 'BIGBAG Store'
       end
     end
-
   end
 end
