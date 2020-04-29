@@ -32,15 +32,9 @@
               <div id="carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <% @product.master.images.each_with_index do |image, index| %>
-                    <% if index == 0 %>
-                      <div class="item active" data-thumb= <%= index %>>
+                      <div class="item <%= "active" if index == 0 %>" data-thumb= <%= index %>>
                         <%= image_tag (image.attachment.url(:large)) %>
                       </div>
-                    <% else %>
-                      <div class="item" data-thumb= <%= index %>>
-                        <%= image_tag (image.attachment.url(:large)) %>
-                      </div>
-                    <% end %>
                   <% end %>
                 </div>
               </div>
