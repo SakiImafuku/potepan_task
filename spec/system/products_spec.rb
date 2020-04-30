@@ -10,7 +10,7 @@ describe '商品', type: :system do
 
     context 'EXAMPLE TOTE詳細ページ' do
       it 'ページタイトルが正しく表示される' do
-        expect(page).to have_title   'EXAMPLE TOTE - BIGBAG Store'
+        expect(page).to have_title 'EXAMPLE TOTE - BIGBAG Store'
       end
 
       it '商品の情報が表示される' do
