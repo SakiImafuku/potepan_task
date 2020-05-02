@@ -1,27 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<!-- LIGHT SECTION -->
-<section class="lightSection clearfix pageHeader">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="page-title">
-          <h2><%= @taxon.name %></h2>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <ol class="breadcrumb pull-right">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="#">shop</a>
-          </li>
-          <li class="active"><%= @taxon.name %></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
+<%= render 'layouts/subtitle', subtitle: @taxon.name %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
@@ -115,55 +93,4 @@
     </div>
   </div>
 </section>
-<!-- LIGHT SECTION -->
-<section class="lightSection clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="owl-carousel partnersLogoSlider">
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-01.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-02.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-03.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-04.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-05.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-01.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-02.png", :alt => "partner-img") %>
-            </div>
-          </div>
-          <div class="slide">
-            <div class="partnersLogo clearfix">
-              <%= image_tag("img/home/partners/partner-03.png", :alt => "partner-img") %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<%= render 'layouts/partner'%>

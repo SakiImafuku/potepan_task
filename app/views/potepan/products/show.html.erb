@@ -1,6 +1,6 @@
 <% provide(:title, @product.name) %>
 <div class="main-wrapper">
-  <%= render 'layouts/subtitle'%>
+  <%= render 'layouts/subtitle', subtitle: @product.name %>
   <section class="mainContent clearfix">
     <div class="container">
       <div class="row singleProduct">
