@@ -35,10 +35,17 @@ describe '商品カテゴリー', type: :system, js: true do
 
       it '商品詳細ページに移動する' do
         within '.productArea' do
-          click_link '$19.99'
+          click_link 'EXAMPLE TOTE'
         end
         expect(page).to have_title 'EXAMPLE TOTE - BIGBAG Store'
       end
+
+      it 'カテゴリー一覧に戻る' do
+        click_link 'EXAMPLE TOTE'
+        click_link '一覧ページへ戻る'
+        expect(page).to have_title  'Bags - BIGBAG Store'
+      end
+    
     end
 
     context 'Mugsページに移動する' do
