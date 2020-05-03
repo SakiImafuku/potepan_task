@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe '商品', type: :system do
   describe '商品詳細ページ' do
-    let!(:product) { create(:product, name: 'EXAMPLE TOTE') }
-
     before do
+      taxon = create(:taxon, name: 'Bags')
+      product = create(:product, name: 'EXAMPLE TOTE')
+      product.taxons << taxon
       visit potepan_product_path(product.id)
     end
 

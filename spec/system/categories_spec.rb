@@ -3,25 +3,25 @@ require 'rails_helper'
 describe '商品カテゴリー', type: :system, js: true do
   describe '商品カテゴリーページ' do
     before do
-      @taxonomy = create(:taxonomy, name: 'Categories')
-      @taxon_a = create(:taxon, name: 'Bags')
-      @taxon_b = create(:taxon, name: 'Mugs')
-      @product_a = create(:product, name: 'EXAMPLE TOTE')
-      @product_b = create(:product, name: 'EXAMPLE MUG')
-      @taxon_a.taxonomy = @taxonomy
-      @taxon_b.taxonomy = @taxonomy
-      @product_a.taxons << @taxon_a
-      @product_b.taxons << @taxon_b
-      @product_a.master.images.create(attachment_file_name: "Test_a")
-      @product_b.master.images.create(attachment_file_name: "Test_b")
-      visit potepan_category_path(@taxon_a.id)
+      taxonomy = create(:taxonomy, name: 'Categories')
+      taxon_a = create(:taxon, name: 'Bags')
+      taxon_b = create(:taxon, name: 'Mugs')
+      product_a = create(:product, name: 'EXAMPLE TOTE')
+      product_b = create(:product, name: 'EXAMPLE MUG')
+      taxon_a.taxonomy = taxonomy
+      taxon_b.taxonomy = taxonomy
+      product_a.taxons << taxon_a
+      product_b.taxons << taxon_b
+      product_a.master.images.create(attachment_file_name: "Test_a")
+      product_b.master.images.create(attachment_file_name: "Test_b")
+      visit potepan_category_path(taxon_a.id)
     end
 
-    context 'Bagsページ' do
+    context 'Bagsページから商品詳細ページに移動する' do
       it 'ページタイトルが正しく表示される' do
         expect(page).to have_title 'Bags - BIGBAG Store'
       end
-      
+
       it '商品一覧が正しく表示される' do
         within '.productBox' do
           expect(page).to have_content 'EXAMPLE TOTE'
@@ -30,7 +30,7 @@ describe '商品カテゴリー', type: :system, js: true do
       end
 
       it 'カテゴリーが異なる商品は表示されない' do
-        expect(page).to_not have_content 'EXAMPLE MUG'
+        expect(page).not_to have_content 'EXAMPLE MUG'
       end
 
       it '商品詳細ページに移動する' do
@@ -39,13 +39,6 @@ describe '商品カテゴリー', type: :system, js: true do
         end
         expect(page).to have_title 'EXAMPLE TOTE - BIGBAG Store'
       end
-
-      it 'カテゴリー一覧に戻る' do
-        click_link 'EXAMPLE TOTE'
-        click_link '一覧ページへ戻る'
-        expect(page).to have_title  'Bags - BIGBAG Store'
-      end
-    
     end
 
     context 'Mugsページに移動する' do
