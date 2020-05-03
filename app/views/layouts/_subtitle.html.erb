@@ -11,7 +11,7 @@
           <li>
             <%= link_to "HOME", '/potepan' %>
           </li>
-          <% if !@product %>  
+          <% if current_page?(potepan_category_path) %>  
             <li>
               <a href="#">shop</a>
             </li>
