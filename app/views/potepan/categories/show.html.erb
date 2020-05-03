@@ -74,7 +74,7 @@
           <% @taxons.each do |taxon| %>
             <% taxon.products.each do |product| %>
               <div class="col-sm-4 col-xs-12">
-                <%= link_to potepan_product_path(product.id) do%>
+                <%= link_to potepan_product_path(product.id) do %>
                   <div class="productBox">
                     <div class="productImage clearfix">
                       <%= image_tag(product.master.images.first.attachment.url(:product), :alt => "products-img") %>
