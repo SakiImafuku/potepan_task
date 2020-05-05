@@ -1,5 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<%= render 'layouts/subtitle', subtitle: @taxon.name %>
+<%= render 'layouts/subtitle', { subtitle: @taxon.name, shop_link: "display" } %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
