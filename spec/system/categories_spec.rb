@@ -12,8 +12,6 @@ describe '商品カテゴリー', type: :system, js: true do
       taxon_b.taxonomy = taxonomy
       product_a.taxons << taxon_a
       product_b.taxons << taxon_b
-      product_a.master.images.create(attachment_file_name: "Test_a")
-      product_b.master.images.create(attachment_file_name: "Test_b")
       visit potepan_category_path(taxon_a.id)
     end
 
