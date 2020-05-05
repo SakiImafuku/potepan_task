@@ -76,7 +76,7 @@
               <%= link_to potepan_product_path(product.id) do %>
                 <div class="productBox">
                   <div class="productImage clearfix">
-                    <%= image_tag(product.display_image.attachment.url(:product), :alt => "products-img") %>
+                    <%= image_tag(product.images.first.attachment.url(:product), :alt => "products-img") %>
                   </div>
                   <div class="productCaption clearfix">
                     <h5><%= product.name %></h5>
