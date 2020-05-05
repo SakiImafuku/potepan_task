@@ -3,13 +3,13 @@ require 'rails_helper'
 describe '商品カテゴリー', type: :system, js: true do
   describe '商品カテゴリーページ' do
     before do
-      taxonomy = create(:taxonomy, name: 'Categories')
+      @taxonomy = create(:taxonomy, name: 'Categories')
       taxon_a = create(:taxon, name: 'Bags')
       taxon_b = create(:taxon, name: 'Mugs')
       product_a = create(:product, name: 'EXAMPLE TOTE')
       product_b = create(:product, name: 'EXAMPLE MUG')
-      taxon_a.taxonomy = taxonomy
-      taxon_b.taxonomy = taxonomy
+      taxon_a.taxonomy = @taxonomy
+      taxon_b.taxonomy = @taxonomy
       product_a.taxons << taxon_a
       product_b.taxons << taxon_b
       visit potepan_category_path(taxon_a.id)
@@ -45,7 +45,7 @@ describe '商品カテゴリー', type: :system, js: true do
       end
 
       it '正しくカテゴリーが表示される' do
-        within '#Categories' do
+        within "#taxonomy-#{@taxonomy.id}" do
           expect(page).to have_content 'Bags(1)'
           expect(page).to have_content 'Mugs(1)'
         end
