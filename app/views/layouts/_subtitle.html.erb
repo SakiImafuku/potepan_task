@@ -11,6 +11,11 @@
           <li>
             <%= link_to "HOME", '/potepan' %>
           </li>
+          <% if shop_link == "display" %>  
+            <li>
+              <a href="#">shop</a>
+            </li>
+          <% end %>
           <li class="active"><%= subtitle %></li>
         </ol>
       </div>
