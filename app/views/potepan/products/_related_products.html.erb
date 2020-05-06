@@ -5,25 +5,23 @@
     </div>
   </div>
   <% n = 0 %>
-  <% @taxons.each do |taxon| %>
-    <% taxon.products.each_with_index do |related_product| %>
-      <% next if @related_products.include?(related_product) %>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <%= link_to potepan_product_path(related_product.id) do %>
-          <div class="productBox">
-            <div class="productImage clearfix">
-              <%= image_tag(related_product.master.images.first.attachment.url(:product), :alt => "products-img") %>
-            </div>
-            <div class="productCaption clearfix">
-              <h5><%= related_product.name %></h5>
-              <h3><%= related_product.display_price %></h3>
-            </div>
+  <% related_products = all_related_products(product) %>
+  <% related_products.flatten!.uniq.each do |related_product| %>
+    <% next if related_product == product %>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <%= link_to potepan_product_path(related_product.id) do %>
+        <div class="productBox">
+          <div class="productImage clearfix">
+            <%= image_tag(related_product.images.first.attachment.url(:product), :alt => "products-img") %>
           </div>
-        <% end %>
-      </div>
-      <% @related_products << related_product %>
-      <% n += 1 %>
-      <% break if n == @related_display_count %>
-    <% end %>
+          <div class="productCaption clearfix">
+            <h5><%= related_product.name %></h5>
+            <h3><%= related_product.display_price %></h3>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% n += 1 %>
+    <% break if n == related_display_count %>
   <% end %>
 </div>
