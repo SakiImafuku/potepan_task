@@ -1,5 +1,5 @@
 <% provide(:title, @taxon.name) %>
-<%= render 'layouts/subtitle', subtitle: @taxon.name %>
+<%= render 'layouts/subtitle', { subtitle: @taxon.name, shop_link: "display" } %>
 <!-- MAIN CONTENT SECTION -->
 <section class="mainContent clearfix productsContent">
   <div class="container">
@@ -12,8 +12,8 @@
               <ul class="nav navbar-nav side-nav">
                 <% @taxonomies.each do |taxonomy| %>
                   <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target=#<%= "#{taxonomy.name}" %>><%= "#{taxonomy.name}" %><i class="fa fa-plus"></i></a>
-                    <ul id= <%= "#{taxonomy.name}" %> class="collapse collapseItem">
+                    <a href="javascript:;" data-toggle="collapse" data-target=#taxonomy-<%= "#{taxonomy.id}" %>><%= "#{taxonomy.name}" %><i class="fa fa-plus"></i></a>
+                    <ul id= taxonomy-<%= "#{taxonomy.id}" %> class="collapse collapseItem">
                       <% taxonomy.taxons.select(&:leaf?).each do |taxon| %>
                         <li>
                           <%= link_to potepan_category_path(taxon.id) do %>
@@ -71,23 +71,21 @@
           </div>
         </div>
         <div class="row productArea">
-          <% @taxons.each do |taxon| %>
-            <% taxon.products.each do |product| %>
-              <div class="col-sm-4 col-xs-12">
-                <%= link_to potepan_product_path(product.id) do %>
-                  <div class="productBox">
-                    <div class="productImage clearfix">
-                      <%= image_tag(product.master.images.first.attachment.url(:product), :alt => "products-img") %>
-                    </div>
-                    <div class="productCaption clearfix">
-                      <h5><%= product.name %></h5>
-                      <h3><%= product.display_price %></h3>
-                    </div>
+          <% @products.each do |product| %>
+            <div class="col-sm-4 col-xs-12">
+              <%= link_to potepan_product_path(product.id) do %>
+                <div class="productBox">
+                  <div class="productImage clearfix">
+                    <%= image_tag(product.images.first.attachment.url(:product), :alt => "products-img") %>
                   </div>
-                <% end %>
-              </div>
-            <% end %>
-          <% end%>
+                  <div class="productCaption clearfix">
+                    <h5><%= product.name %></h5>
+                    <h3><%= product.display_price %></h3>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
