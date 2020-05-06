@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe '商品', type: :system do
   describe '商品詳細ページ' do
+    let!(:taxon)   { create(:taxon, name: 'Bags') }
+    let!(:product) { create(:product, taxons: [taxon], name: 'EXAMPLE TOTE') }
+
     before do
-      taxon = create(:taxon, name: 'Bags')
-      product = create(:product, name: 'EXAMPLE TOTE')
-      product.taxons << taxon
       visit potepan_product_path(product.id)
     end
 
@@ -25,21 +25,21 @@ describe '商品', type: :system do
     context 'トップページに移動する' do
       it 'ロゴをクリックする' do
         click_on 'ロゴ画像'
-        expect(page).to have_title 'BIGBAG Store'
+        expect(current_path).to eq potepan_path
       end
 
       it 'ヘッダーのHOMEをクリックする' do
         within '.navbar' do
           click_on 'HOME'
         end
-        expect(page).to have_title 'BIGBAG Store'
+        expect(current_path).to eq potepan_path
       end
 
       it '商品詳細ページ内のHOMEをクリックする' do
         within '.pageHeader' do
           click_on 'HOME'
         end
-        expect(page).to have_title 'BIGBAG Store'
+        expect(current_path).to eq potepan_path
       end
     end
   end
