@@ -4,8 +4,7 @@
       <h4>関連商品</h4>
     </div>
   </div>
-  <% all_related_products(product).flatten!.uniq.each_with_index do |related_product, index| %>
-    <% next if related_product == product %>
+  <% related_products.each do |related_product| %>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <%= link_to potepan_product_path(related_product.id) do %>
         <div class="productBox">
@@ -19,6 +18,5 @@
         </div>
       <% end %>
     </div>
-    <% break if index == related_display_count %>
   <% end %>
 </div>
