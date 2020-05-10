@@ -24,7 +24,7 @@ describe '商品カテゴリー', type: :system, js: true do
     within '.pageHeader' do
       expect(page).to have_link 'HOME', href: potepan_path
     end
-    # 商品一覧が正しく表示されている
+    # 商品一覧が正しく表示されている、別のカテゴリーの商品は表示されない
     within '.productBox' do
       expect(page).to have_content product_a.name
       expect(page).to have_content product_a.display_price

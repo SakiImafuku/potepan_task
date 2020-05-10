@@ -37,7 +37,7 @@ describe '商品詳細', type: :system do
       expect(page).to have_content product_a.name
       expect(page).to have_content product_a.display_price
     end
-    # 関連商品が表示される
+    # 関連商品4点表示する、関連商品以外は表示されない
     within '.productsContent' do
       expect(page).to have_content related_product_1.name
       expect(page).to have_content related_product_2.name
