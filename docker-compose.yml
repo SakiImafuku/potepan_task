@@ -37,8 +37,6 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOST: mysql
       REDIS_URL: "redis://redis:6379"
-      API_SEARCH_URL:
-      API_SEARCH_TOKEN:
     depends_on:
       - mysql
       - redis
