@@ -1,7 +1,7 @@
 class Potepan::ApiController < ApplicationController
   def search
-    url = ENV["API_SEARCH_URL"]
-    token = ENV["API_SEARCH_TOKEN"]
+    url = Rails.application.credentials.api[:API_SEARCH_URL]
+    token = Rails.application.credentials.api[:API_SEARCH_TOKEN]
     uri = URI.parse(url)
     http = Faraday.new(:url => "#{uri.scheme}://#{uri.host}")
     res = http.get do |req|
