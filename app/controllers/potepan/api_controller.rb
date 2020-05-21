@@ -10,7 +10,7 @@ class Potepan::ApiController < ApplicationController
       req.headers['Content-Type'] = "application/json"
       req.body = {
         keyword: params[:keyword],
-        max_num: params[:MAX_NUM],
+        max_num: params[:max_num],
       }.to_json
     end
     render json: res.body

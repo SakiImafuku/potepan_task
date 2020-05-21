@@ -1,21 +1,21 @@
 //============================== header =========================
 jQuery(document).ready(function($) {
-	$('#searchWord').autocomplete({
-		source: function(req, resp){
-			$.ajax({
-				url: "/potepan/api/search",
-				type: 'GET',
-				dataType: "json",
-				data: {
-					keyword: req.term,
-					MAX_NUM: 5
+		$('#searchWord').autocomplete({
+				source: function(req, resp){
+						$.ajax({
+								url: "/potepan/api/search",
+								type: 'GET',
+								dataType: "json",
+								data: {
+										keyword: req.term,
+										max_num: 5
+								}
+						})
+						.done(function(response){
+								resp(response);
+						});
 				}
-			})
-			.done(function(response){
-				resp(response);
-			});
-		}
-	});
+		});
 });
 
 jQuery(document).ready(function($) {
@@ -52,10 +52,10 @@ jQuery(document).ready(function(){
 		});
 
 		$('.ui-autocomplete').click(function() {
-			setTimeout(() => {
-				$('.searchBox').addClass('open')
-			},
-			500)
+				setTimeout(() => {
+						$('.searchBox').addClass('open')
+				},
+				500)
     });
 });
 //============================== RS-SLIDER =========================
