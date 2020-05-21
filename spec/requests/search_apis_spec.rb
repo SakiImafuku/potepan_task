@@ -5,7 +5,7 @@ RSpec.describe "SearchApis", type: :request do
     it "works! (now write some real specs)" do
       get potepan_api_search_path, params: {
         keyword: "r",
-        MAX_NUM: 5,
+        max_num: 5,
       }
       expect(response).to have_http_status(200)
       json = JSON.parse(response.body)
