@@ -12,8 +12,13 @@ jQuery(document).ready(function($) {
                 }
             })
             .done(function(response){
-                resp(response);
-            });
+								resp(JSON.parse(response.body));
+						})
+            .fail(function(XMLHttpRequest, textStatus, errorThrown){
+								console.log(XMLHttpRequest.status);
+								console.log(textStatus);
+								console.log(errorThrown);
+						});
         }
     });
 });

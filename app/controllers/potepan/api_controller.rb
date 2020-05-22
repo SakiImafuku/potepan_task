@@ -13,6 +13,6 @@ class Potepan::ApiController < ApplicationController
         max_num: params[:max_num],
       }.to_json
     end
-    render json: res.body
+    render json: res
   end
 end
