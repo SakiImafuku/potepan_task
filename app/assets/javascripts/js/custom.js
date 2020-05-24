@@ -12,13 +12,17 @@ jQuery(document).ready(function($) {
                 }
             })
             .done(function(response){
-								resp(JSON.parse(response.body));
-						})
+                if (response.status === 200) {
+                    resp(JSON.parse(response.results));
+                } else {
+                    console.log(response.status);
+                }
+            })
             .fail(function(XMLHttpRequest, textStatus, errorThrown){
-								console.log(XMLHttpRequest.status);
-								console.log(textStatus);
-								console.log(errorThrown);
-						});
+                console.log(XMLHttpRequest.status);
+                console.log(textStatus);
+                console.log(errorThrown);
+            });
         }
     });
 });

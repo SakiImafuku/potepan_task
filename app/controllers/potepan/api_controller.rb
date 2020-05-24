@@ -13,6 +13,13 @@ class Potepan::ApiController < ApplicationController
         max_num: params[:max_num],
       }.to_json
     end
-    render json: res
+
+    if res.status == 200
+      result_words = res.body
+      render json: { results: result_words, status: res.status }
+    else
+      render json: { status: res.status}
+    end
+
   end
 end
