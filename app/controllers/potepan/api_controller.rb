@@ -18,8 +18,7 @@ class Potepan::ApiController < ApplicationController
       result_words = res.body
       render json: { results: result_words, status: res.status }
     else
-      render json: { status: res.status}
+      render json: { status: res.status }
     end
-
   end
 end
