@@ -5,11 +5,16 @@ RSpec.describe "SearchApis", type: :request do
     let!(:uri) { Rails.application.credentials.api[:API_SEARCH_URL] }
 
     it "正常に動作する" do
-      stub_request(:get, uri).to_return(
-        body: ["ruby", "ruby for women", "ruby for men", "rails", "rails for women"],
-        status: 200,
-      )
-      get potepan_api_search_path
+      stub_request(:get, uri).with { |req| req.body = { keyword: "r", max_num: 5 }.to_json }.
+        to_return(
+          body: ["ruby", "ruby for women", "ruby for men", "rails", "rails for women"],
+          status: 200,
+        )
+
+      get potepan_api_search_path, params: {
+        keyword: "r",
+        max_num: 5,
+      }
       expect(response).to have_http_status(200)
       json = JSON.parse(response.body)
       expect(json).to eq(
