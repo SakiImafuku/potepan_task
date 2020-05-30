@@ -1,38 +1,43 @@
 //============================== header =========================
 jQuery(document).ready(function($) {
-    $('#searchWord').autocomplete({
-        source: function(req, resp){
-            $.ajax({
-                url: "/potepan/api/search",
-                type: 'GET',
-                dataType: "json",
-                data: {
-                    keyword: req.term,
-                    max_num: 5
-                }
-            })
-            .done(function(response){
-                if (response.status === 200) {
-                    resp(JSON.parse(response.results));
-                } else {
-                    console.log(response.status);
-                }
-            })
-            .fail(function(XMLHttpRequest, textStatus, errorThrown){
-                console.log(XMLHttpRequest.status);
-                console.log(textStatus);
-                console.log(errorThrown);
-            });
-        }
+    let $searchWord = $("#searchWord");
+    $searchWord.autocomplete({
+        source: search
     });
+
+    function search(req, resp){
+        let url_path = "/potepan/api/search",
+            max_num = 5
+        $.ajax({
+            url: url_path,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                keyword: req.term,
+                max_num: max_num
+            }
+        })
+        .done(function(response){
+            if (response.status === 200) {
+                resp(JSON.parse(response.results));
+            } else {
+                console.log(response.status);
+            }
+        })
+        .fail(function(XMLHttpRequest, textStatus, errorThrown){
+            console.log(XMLHttpRequest.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    }
 });
 
 jQuery(document).ready(function($) {
-    var navbar = $('.navbar-main'),
-    		distance = navbar.offset().top,
-        $window = $(window);
+	    let navbar = $('.navbar-main'),
+	        distance = navbar.offset().top,
+	        $window = $(window);
 	    $window.scroll(function() {
-	    	if(($window.scrollTop() >= distance) && ($(".navbar-default").hasClass("navbar-main")))
+	        if(($window.scrollTop() >= distance) && ($(".navbar-default").hasClass("navbar-main")))
 	        {
 	            navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
 	          	$("body").addClass("padding-top");
@@ -46,25 +51,30 @@ jQuery(document).ready(function($) {
 });
 //============================== ALL DROPDOWN ON HOVER =========================
 jQuery(document).ready(function(){
-    $('.dropdown').hover(function() {
+    let $dropdown = $('.dropdown'),
+        $uiAutocomplete = $('.ui-autocomplete'),
+        $searchBox = $('.searchBox'),
+        time = 500;
+
+    $dropdown.hover(function() {
         $(this).addClass('open');
     },
     function() {
         $(this).removeClass('open');
     });
 
-    $('.ui-autocomplete').hover(function() {
-        $('.searchBox').addClass('open');
+    $uiAutocomplete.hover(function() {
+        $searchBox.addClass('open');
     },
     function() {
-        $('.searchBox').removeClass('open');
+        $searchBox.removeClass('open');
     });
 
-    $('.ui-autocomplete').click(function() {
+    $uiAutocomplete.click(function() {
         setTimeout(() => {
-            $('.searchBox').addClass('open')
+            $searchBox.addClass('open')
         },
-        500)
+        time)
     });
 });
 //============================== RS-SLIDER =========================
