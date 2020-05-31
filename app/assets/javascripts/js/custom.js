@@ -6,15 +6,13 @@ jQuery(document).ready(function($) {
     });
 
     function search(req, resp){
-        let url_path = "/potepan/api/search",
-            max_num = 5
+        let url_path = "/potepan/api/search"
         $.ajax({
             url: url_path,
             type: 'GET',
             dataType: "json",
             data: {
-                keyword: req.term,
-                max_num: max_num
+                keyword: req.term
             }
         })
         .done(function(response){
