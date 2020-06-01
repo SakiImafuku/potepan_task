@@ -195,6 +195,10 @@ a:hover, a:focus {
   z-index: 999;
 }
 
+.ui-autocomplete {
+  z-index: 1000 !important;
+}
+
 /*=== 2.1.1 TOPBAR ===*/
 .topBar {
   width: 100%;

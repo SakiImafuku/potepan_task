@@ -1,33 +1,78 @@
 //============================== header =========================
-
 jQuery(document).ready(function($) {
+    let $searchWord = $("#searchWord");
+    $searchWord.autocomplete({
+        source: search
+    });
 
-    var navbar = $('.navbar-main'),
-    		distance = navbar.offset().top,
-        $window = $(window);
-
-	    $window.scroll(function() {
-	    	if(($window.scrollTop() >= distance) && ($(".navbar-default").hasClass("navbar-main")))
-	        {
-	            navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
-	          	$("body").addClass("padding-top");
-	          	$(".topBar").css("display","none");
-	        } else {
-	            navbar.removeClass('navbar-fixed-top');
-	            $("body").removeClass("padding-top");
-	            $(".topBar").css("display","block");
-	        }
-	    });
-
+    function search(req, resp){
+        let url_path = "/potepan/api/search"
+        $.ajax({
+            url: url_path,
+            type: 'GET',
+            dataType: "json",
+            data: {
+                keyword: req.term
+            }
+        })
+        .done(function(response){
+            if (response.status === 200) {
+                resp(JSON.parse(response.results));
+            } else {
+                console.log(response.status);
+            }
+        })
+        .fail(function(XMLHttpRequest, textStatus, errorThrown){
+            console.log(XMLHttpRequest.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    }
 });
 
+jQuery(document).ready(function($) {
+    let navbar = $('.navbar-main'),
+        distance = navbar.offset().top,
+        $window = $(window);
+    $window.scroll(function() {
+        if(($window.scrollTop() >= distance) && ($(".navbar-default").hasClass("navbar-main")))
+        {
+            navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
+            $("body").addClass("padding-top");
+            $(".topBar").css("display","none");
+        } else {
+            navbar.removeClass('navbar-fixed-top');
+            $("body").removeClass("padding-top");
+            $(".topBar").css("display","block");
+        }
+    });
+});
 //============================== ALL DROPDOWN ON HOVER =========================
 jQuery(document).ready(function(){
-    $('.dropdown').hover(function() {
+    let $dropdown = $('.dropdown'),
+        $uiAutocomplete = $('.ui-autocomplete'),
+        $searchBox = $('.searchBox'),
+        time = 500;
+
+    $dropdown.hover(function() {
         $(this).addClass('open');
     },
     function() {
         $(this).removeClass('open');
+    });
+
+    $uiAutocomplete.hover(function() {
+        $searchBox.addClass('open');
+    },
+    function() {
+        $searchBox.removeClass('open');
+    });
+
+    $uiAutocomplete.click(function() {
+        setTimeout(() => {
+            $searchBox.addClass('open')
+        },
+        time)
     });
 });
 //============================== RS-SLIDER =========================
