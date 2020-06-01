@@ -1,12 +1,12 @@
 //============================== header =========================
 jQuery(document).ready(function($) {
-    let $searchWord = $("#searchWord");
+    const $searchWord = $("#searchWord");
     $searchWord.autocomplete({
         source: search
     });
 
     function search(req, resp){
-        let url_path = "/potepan/api/search"
+        const url_path = "/potepan/api/search"
         $.ajax({
             url: url_path,
             type: 'GET',
@@ -31,28 +31,32 @@ jQuery(document).ready(function($) {
 });
 
 jQuery(document).ready(function($) {
-    let navbar = $('.navbar-main'),
-        distance = navbar.offset().top,
-        $window = $(window);
-    $window.scroll(function() {
-        if(($window.scrollTop() >= distance) && ($(".navbar-default").hasClass("navbar-main")))
-        {
-            navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
-            $("body").addClass("padding-top");
-            $(".topBar").css("display","none");
-        } else {
-            navbar.removeClass('navbar-fixed-top');
-            $("body").removeClass("padding-top");
-            $(".topBar").css("display","block");
-        }
-    });
+    const $window        = $(window),
+          $navBarDefault = $('.navbar-default'),
+          $navbar        = $('.navbar-main'),
+          $body          = $('body'),
+          $topBar        = $('.topBar'),
+          navbarOffsetY  = $navbar.offset().top,
+          showTopBar = function() {
+              if(($window.scrollTop() >= navbarOffsetY) && ($navBarDefault.hasClass("navbar-main")))
+              {
+                  $navbar.removeClass('navbar-fixed-top').addClass('navbar-fixed-top');
+                  $body.addClass("padding-top");
+                  $topBar.css("display","none");
+              } else {
+                  $navbar.removeClass('navbar-fixed-top');
+                  $body.removeClass("padding-top");
+                  $topBar.css("display","block");
+              }
+          };
+    $window.scroll(showTopBar);
 });
 //============================== ALL DROPDOWN ON HOVER =========================
 jQuery(document).ready(function(){
-    let $dropdown = $('.dropdown'),
-        $uiAutocomplete = $('.ui-autocomplete'),
-        $searchBox = $('.searchBox'),
-        time = 500;
+    const $dropdown = $('.dropdown'),
+          $uiAutocomplete = $('.ui-autocomplete'),
+          $searchBox = $('.searchBox'),
+          time = 500;
 
     $dropdown.hover(function() {
         $(this).addClass('open');
