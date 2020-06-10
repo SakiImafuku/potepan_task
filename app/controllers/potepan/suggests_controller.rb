@@ -4,12 +4,11 @@ class Potepan::SuggestsController < ApplicationController
   def index
     keyword = params[:keyword]
     max_num = params[:max_num].to_i == 0 ? nil : params[:max_num]
-    suggests = Potepan::Suggest.filter(keyword)
-    results = suggests.limit(max_num).map { |suggest| suggest.keyword }
 
     if keyword.blank?
-      render status: 500, json: "unexpected error"
+      render status: 404, json: "error: missing keyword"
     else
+      results = Potepan::Suggest.filter(keyword, max_num).pluck(:keyword)
       render status: 200, json: results
     end
   end

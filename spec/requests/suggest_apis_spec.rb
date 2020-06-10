@@ -63,8 +63,8 @@ RSpec.describe "SuggestApis", type: :request do
       end
 
       it "エラーを返す" do
-        expect(response).to have_http_status(500)
-        expect(response.body).to eq "unexpected error"
+        expect(response).to have_http_status(404)
+        expect(response.body).to eq "error: missing keyword"
       end
     end
 
