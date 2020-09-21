@@ -30,9 +30,9 @@ Solidusを用いたECサイト。
 - Web APIを使用した予測変換の表示
 
 ## 環境
-■フレームワーク
+- フレームワーク
 　Ruby on Rails
-■インフラ
+- インフラ
 　heroku, Docker
-■データベース
+- データベース
 　MySQL
